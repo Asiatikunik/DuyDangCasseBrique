@@ -7,6 +7,8 @@
 #include <fcntl.h>
 using namespace std;
 
+/* test commentaire */
+
 /* retourne 0 si aucune touche n'est appuyée, 
  * sinon retourne le code ASCII de la touche */
 int read_keybord();
