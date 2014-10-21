@@ -19,6 +19,20 @@ int VitesseJeu=100;
 int VitesseBarre=3;
 
 char screen[H][L];
+char tab[30][60];
+
+void showTab (char (*tab)[30]) {
+
+	for (int n=0; n<H; n++) {
+		for(int m=0; m<L; m++) {
+			cout << tab[n][m];
+		}
+	cout << endl;
+	 }
+
+}
+	
+
 
 void screen_display() {
 	system("clear");
@@ -50,6 +64,8 @@ void clear_screen() {
 			if (i==H-3 && j> barreD && j< barreF ) { 
 				screen[i][j]='o';
 			}
+	
+				
 		}
 	}
 }
@@ -90,7 +106,6 @@ void update_game(int key) {
 	//Limite du screen
 	if ( vertical==0 ) {
 		x = x + VitesseBalle;
-		cout << "bas " << x << endl;
 		if(x==H)
 			vertical=1;
 	} /*else{
@@ -103,7 +118,6 @@ void update_game(int key) {
 
 	if (horizontal==0 ) {
 		y = y + VitesseBalle;
-		cout << "droit " << y <<endl;
 		if(y==L)
 			horizontal=1;
 	} /*else{
@@ -115,7 +129,7 @@ void update_game(int key) {
 	}*/
 
 	if(horizontal==1) {
-		y=y-VitesseBalle;
+		y = y -VitesseBalle;
 		if(y==0)	
 			horizontal=0;
 	}
@@ -136,13 +150,32 @@ void update_game(int key) {
 }
 
 
+void stage1 (char (*tab)[30]) {
+
+	for( int n=0; n<H; n++) {
+		for( int m=0; m<L; m++) {
+			
+			if(n==2 || n==4)
+				tab[n][m]= 'a';
+			else
+				tab[n][m]=' ';
+		}
+	}
+
+}
+
+
 /******************************************************************************/
 
 int main() {
 	int key;
+	stage1( tab[60][30] );
+	
+
 	do {
 		key = read_keybord();
 		clear_screen();
+		showTab( tab[60][30] );
 		update_game(key);
 		screen_display();
 		usleep(VitesseJeu * 1000);
@@ -187,3 +220,4 @@ int read_keybord() {
 
 /******************************************************************************/
 /******************************************************************************/
+
